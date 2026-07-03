@@ -1,7 +1,9 @@
-from src.database import get_database_client
+from src.loader import load_pdf
 
-try:
-    client = get_database_client()
-    print("✅ MongoDB Atlas connected successfully!")
-except Exception as e:
-    print(e)
+pages = load_pdf("data/pdfs/mongodb.pdf")
+
+print(f"Total Pages: {len(pages)}")
+
+print("\nFirst Page:\n")
+
+print(pages[0].page_content)
