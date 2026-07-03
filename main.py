@@ -1,9 +1,10 @@
 from src.loader import load_pdf
+from src.cleaner import clean_pages
 
 pages = load_pdf("data/pdfs/mongodb.pdf")
 
-print(f"Total Pages: {len(pages)}")
+print(f"Pages before cleaning : {len(pages)}")
 
-print("\nFirst Page:\n")
+cleaned_pages = clean_pages(pages)
 
-print(pages[0].page_content)
+print(f"Pages after cleaning  : {len(cleaned_pages)}")
