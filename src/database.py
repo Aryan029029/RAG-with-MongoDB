@@ -1,16 +1,13 @@
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
-from dotenv import load_dotenv
-import os
 
-load_dotenv()
+from src.config import MONGODB_URI
 
-def get_database_client():
-    uri = os.getenv("MONGODB_URI")
+client = MongoClient(
+    MONGODB_URI,
+    server_api=ServerApi("1")
+)
 
-    if not uri:
-        raise ValueError("MONGODB_URI not found.")
+db = client["book_mongodb_chunks"]
 
-    client = MongoClient(uri, server_api=ServerApi("1"))
-    client.admin.command("ping")
-    return client
+collection = db["chunked_data"]
